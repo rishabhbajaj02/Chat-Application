@@ -1,0 +1,91 @@
+{
+    "id": "oa1",
+    "campaignId": "camp1",
+    "offerId": "ofr1",
+    "caps": [
+        {
+            "measure": "Currency",
+            "period": "Promotion",
+            "maxValue": 500,
+            "value": 400,
+            "currencyId": 1,
+            "classId": null
+        },
+        {
+            "measure": "Currency",
+            "period": "Promotion",
+            "maxValue": 300,
+            "value": 100,
+            "currencyId": 2,
+            "classId": null
+        },
+        {
+            "measure": "Class",
+            "period": "Promotion",
+            "maxValue": 500,
+            "value": 500,
+            "currencyId": null,
+            "classId": 1
+        }
+    ],
+    "behaviors": [
+        {
+            "behaviorId": "beh1",
+            "offerBehaviorType": "PURCHASE",
+            "rewards": [
+                {
+                    "rewardId": "points-reward",
+                    "rewardType": "POINTS",
+                    "rewardCurrency": {
+                        "currencyId": 1,
+                        "classId": 1
+                    },
+                    "caps": [
+                        {
+                            "measure": "Issuance",
+                            "period": "Promotion",
+                            "maxValue": 5,
+                            "value": 3,
+                            "currencyId": null,
+                            "classId": null
+                        },
+                        {
+                            "measure": "Currency",
+                            "period": "Promotion",
+                            "maxValue": 1000,
+                            "value": 400,
+                            "currencyId": 1,
+                            "classId": null
+                        }
+                    ]
+                },
+                {
+                    "rewardId": "badge-reward",
+                    "rewardType": "BADGE",
+                    "rewardCurrency": {
+                        "currencyId": 2,
+                        "classId": 1
+                    },
+                    "caps": [
+                        {
+                            "measure": "Issuance",
+                            "period": "Promotion",
+                            "maxValue": 3,
+                            "value": 0,
+                            "currencyId": null,
+                            "classId": null
+                        },
+                        {
+                            "measure": "Currency",
+                            "period": "Promotion",
+                            "maxValue": 200,
+                            "value": 100,
+                            "currencyId": 2,
+                            "classId": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
