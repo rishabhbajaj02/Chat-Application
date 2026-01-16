@@ -23,14 +23,13 @@ export default function ChatContainer({ username, room }: ChatContainerProps) {
     isConnected,
     messages,
     users,
-    error,
     joinRoom,
     sendMessage,
     sendLocation,
+    addLocalMessage,
     disconnect,
-    socket,
   } = useSocket();
-  const { askBot, isLoading: isBotLoading } = useChatBot();
+  const { askBot } = useChatBot();
 
   const [isJoining, setIsJoining] = useState(true);
   const [joinError, setJoinError] = useState<string | null>(null);
@@ -69,23 +68,19 @@ export default function ChatContainer({ username, room }: ChatContainerProps) {
     async (question: string): Promise<string> => {
       const response = await askBot(question, room);
 
-      // Emit bot response as a message
-      if (socket && isConnected) {
-        const botMessage: Message = {
-          id: Date.now().toString(),
-          username: 'Gemini Bot',
-          text: response,
-          createdAt: Date.now(),
-          type: 'bot',
-        };
-        // We need to emit this through the server or handle locally
-        // For simplicity, we'll send it as a regular message prefixed
-        await sendMessage(`[Bot Response] ${response}`);
-      }
+      // Add bot response as a local message
+      const botMessage: Message = {
+        id: `bot-${Date.now()}`,
+        username: 'Gemini Bot',
+        text: response,
+        createdAt: Date.now(),
+        type: 'bot',
+      };
+      addLocalMessage(botMessage);
 
       return response;
     },
-    [askBot, room, socket, isConnected, sendMessage]
+    [askBot, room, addLocalMessage]
   );
 
   const handleLeave = () => {

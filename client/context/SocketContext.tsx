@@ -166,6 +166,10 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
     }
   }, [socket]);
 
+  const addLocalMessage = useCallback((message: Message) => {
+    setMessages((prev) => [...prev, message]);
+  }, []);
+
   return (
     <SocketContext.Provider
       value={{
@@ -179,6 +183,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
         joinRoom,
         sendMessage,
         sendLocation,
+        addLocalMessage,
         disconnect,
       }}
     >

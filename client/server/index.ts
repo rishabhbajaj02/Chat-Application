@@ -147,7 +147,7 @@ app.prepare().then(() => {
   });
 
   // Handle all Next.js requests
-  expressApp.all('*', (req, res) => {
+  expressApp.all('/{*path}', (req, res) => {
     const parsedUrl = parse(req.url!, true);
     handle(req, res, parsedUrl);
   });
